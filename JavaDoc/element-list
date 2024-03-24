@@ -1,0 +1,6 @@
+crud.operations
+crud.operations.controller
+crud.operations.entity
+crud.operations.repository
+crud.operations.service
+crud.operations.service.impl
