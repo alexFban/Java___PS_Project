@@ -39,6 +39,13 @@ public class Project {
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<User_Project> user_projects = new ArrayList<>();
     /**
+     * @hidden
+     */
+    @JsonIgnore
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Pledge_Reward> pledge_rewards = new ArrayList<>();
+
+    /**
      * Amount of money to have been raised at a specific moment.
      */
     @Column(nullable = false)
