@@ -1,10 +1,18 @@
 package crud.operations.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Main class of the project, representing the projects that will be using the app.
@@ -16,6 +24,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table(name = "projects")
+@JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class Project {
     /**
      * @hidden
@@ -24,8 +33,16 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     /**
+     * @hidden
+     */
+    @JsonIgnore
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<User_Project> user_projects = new ArrayList<>();
+    /**
      * Amount of money to have been raised at a specific moment.
      */
+    @Column(nullable = false)
+    private String name;
     @Column(nullable = false)
     private int money_raised;
     /**
