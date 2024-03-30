@@ -12,8 +12,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "social_goals")
-public class Social_Goal {
+@Table(name = "social_rewards")
+public class Social_Reward {
     /**
      * @hidden
      */
@@ -23,19 +23,9 @@ public class Social_Goal {
     /**
      * @hidden
      */
-    @ManyToOne
-    @JoinColumn(name = "project_id", referencedColumnName = "id")
-    private Project project;
-    /**
-     * @hidden
-     */
-    @JsonIgnore
-    @OneToOne(mappedBy = "socialGoal", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Social_Reward socialReward;
-    @Column(nullable = false)
-    private int number_achieved = 0;
-    @Column(nullable = false)
-    private int number_to_achieve;
+    @OneToOne
+    @JoinColumn(name = "social_goal_id", referencedColumnName = "id")
+    private Social_Goal socialGoal;
     @Column(nullable = false)
     private String description;
 }
