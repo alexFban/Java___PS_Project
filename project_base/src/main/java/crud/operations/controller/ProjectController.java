@@ -16,6 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @RequestMapping("api/projects")
 public class ProjectController {
+
     /**
      * Instance of {@link ProjectService} class.
      */

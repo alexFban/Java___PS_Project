@@ -26,24 +26,28 @@ import java.util.Set;
 @Table(name = "projects")
 @JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class Project {
+
     /**
      * @hidden
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     /**
      * @hidden
      */
     @JsonIgnore
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<User_Project> user_projects = new ArrayList<>();
+
     /**
      * @hidden
      */
     @JsonIgnore
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Pledge_Reward> pledge_rewards = new ArrayList<>();
+
     /**
      * @hidden
      */
@@ -52,12 +56,17 @@ public class Project {
     private List<Social_Goal> social_goals = new ArrayList<>();
 
     /**
-     * Amount of money to have been raised at a specific moment.
+     * A name that represents the project.
      */
     @Column(nullable = false)
     private String name;
+
+    /**
+     * Amount of money to have been raised at a specific moment.
+     */
     @Column(nullable = false)
     private int money_raised;
+
     /**
      * Amount of money that is to be achieved.
      */
@@ -68,9 +77,14 @@ public class Project {
      */
     @Column(nullable = false)
     private String description;
-    public void update(Object update_info) {
+
+    /**
+     * Method called when a project is updated, containing the actions to be taken
+     * @param updateInfo An object containing the essential update data
+     */
+    public void update(Object updateInfo) {
         for (User_Project userProject : this.getUser_projects()) {
-            userProject.update(update_info);
+            userProject.update(updateInfo);
         }
     }
 }
