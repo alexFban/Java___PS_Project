@@ -1,5 +1,6 @@
 package crud.operations.service.impl;
 
+import crud.operations.entity.Project;
 import crud.operations.entity.Social_Goal;
 import crud.operations.repository.Social_GoalRepository;
 import crud.operations.service.Social_GoalService;
@@ -25,10 +26,14 @@ public class Social_GoalServiceImpl implements Social_GoalService {
     @Override
     public Social_Goal updateSocial_Goal(Social_Goal socialGoal) {
         Social_Goal existingSocial_Goal = socialGoalRepository.findById(socialGoal.getId()).get();
-        existingSocial_Goal.setNumber_achieved(socialGoal.getNumber_achieved());
-        existingSocial_Goal.setNumber_to_achieve(socialGoal.getNumber_to_achieve());
-        existingSocial_Goal.setDescription(socialGoal.getDescription());
+        existingSocial_Goal.setNumber_achieved(socialGoal.getNumber_achieved() == 0 ?
+                                            existingSocial_Goal.getNumber_achieved() : socialGoal.getNumber_achieved());
+        existingSocial_Goal.setNumber_to_achieve(socialGoal.getNumber_to_achieve() == 0 ?
+                                                existingSocial_Goal.getNumber_to_achieve() : socialGoal.getNumber_to_achieve());
+        existingSocial_Goal.setDescription(socialGoal.getDescription() == null ?
+                                        existingSocial_Goal.getDescription() : socialGoal.getDescription());
         Social_Goal updatedSocial_Goal = socialGoalRepository.save(existingSocial_Goal);
+        updatedSocial_Goal.getProject().update("A social goal of project " + updatedSocial_Goal.getProject().getName() + " has been updated!");
         return updatedSocial_Goal;
     }
     @Override

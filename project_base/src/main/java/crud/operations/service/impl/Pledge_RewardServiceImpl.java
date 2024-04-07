@@ -25,10 +25,14 @@ public class Pledge_RewardServiceImpl implements Pledge_RewardService {
     @Override
     public Pledge_Reward updatePledge_Reward(Pledge_Reward pledgeReward) {
         Pledge_Reward existingPledgeReward = pledgeRewardRepository.findById(pledgeReward.getId()).get();
-        existingPledgeReward.setItem(pledgeReward.getItem());
-        existingPledgeReward.setMinimum_pledge_level(pledgeReward.getMinimum_pledge_level());
-        existingPledgeReward.setDescription(pledgeReward.getDescription());
+        existingPledgeReward.setItem(pledgeReward.getItem() == null ?
+                                    existingPledgeReward.getItem() : pledgeReward.getItem());
+        existingPledgeReward.setMinimum_pledge_level(pledgeReward.getMinimum_pledge_level() == 0 ?
+                                                    existingPledgeReward.getMinimum_pledge_level() : pledgeReward.getMinimum_pledge_level());
+        existingPledgeReward.setDescription(pledgeReward.getDescription() == null ?
+                                            existingPledgeReward.getDescription() : pledgeReward.getDescription());
         Pledge_Reward updatedPledge_Reward = pledgeRewardRepository.save(existingPledgeReward);
+        updatedPledge_Reward.getProject().update("A pledge reward of project " + updatedPledge_Reward.getProject().getName() + " has been updated!");
         return updatedPledge_Reward;
     }
     @Override

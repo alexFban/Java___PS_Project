@@ -59,13 +59,20 @@ public class UserServiceImpl implements UserService {
     @Override
     public User updateUser(User user) {
         User existingUser = userRepository.findById(user.getId()).get();
-        existingUser.setUsername(user.getUsername());
-        existingUser.setPassword(user.getPassword());
-        existingUser.setFirstName(user.getFirstName());
-        existingUser.setLastName(user.getLastName());
-        existingUser.setEmail(user.getEmail());
-        existingUser.setPhone_number(user.getPhone_number());
-        existingUser.setType(user.getType());
+        existingUser.setUsername(user.getUsername() == null ?
+                                existingUser.getUsername() : user.getUsername());
+        existingUser.setPassword(user.getPassword() == null ?
+                                existingUser.getPassword() : user.getPassword());
+        existingUser.setFirstName(user.getFirstName() == null ?
+                                existingUser.getFirstName() : user.getFirstName());
+        existingUser.setLastName(user.getLastName() ==null ?
+                                existingUser.getLastName() : user.getLastName());
+        existingUser.setEmail(user.getEmail() == null ?
+                            existingUser.getEmail() : user.getEmail());
+        existingUser.setPhone_number(user.getPhone_number() == -1 ?
+                                    existingUser.getPhone_number() : user.getPhone_number());
+        existingUser.setType(user.getType() == null ?
+                            existingUser.getType() : user.getType());
         User updatedUser = userRepository.save(existingUser);
         return updatedUser;
     }

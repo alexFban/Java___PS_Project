@@ -25,7 +25,8 @@ public class Social_RewardServiceImpl implements Social_RewardService {
     @Override
     public Social_Reward updateSocial_Reward(Social_Reward socialReward) {
         Social_Reward existingSocial_Reward = socialRewardRepository.findById(socialReward.getId()).get();
-        existingSocial_Reward.setDescription(socialReward.getDescription());
+        existingSocial_Reward.setDescription(socialReward.getDescription() == null ?
+                                            existingSocial_Reward.getDescription() : socialReward.getDescription());
         Social_Reward updatedSocial_Reward = socialRewardRepository.save(existingSocial_Reward);
         return updatedSocial_Reward;
     }

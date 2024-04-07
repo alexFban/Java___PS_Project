@@ -28,4 +28,7 @@ public class User_Project {
     private Project project;
     @Column(nullable = false)
     private int pledge_level;
+    public void update(Object update_info) {
+        this.user.update(update_info);
+    }
 }
