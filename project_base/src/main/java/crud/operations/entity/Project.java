@@ -68,4 +68,9 @@ public class Project {
      */
     @Column(nullable = false)
     private String description;
+    public void update(Object update_info) {
+        for (User_Project userProject : this.getUser_projects()) {
+            userProject.update(update_info);
+        }
+    }
 }

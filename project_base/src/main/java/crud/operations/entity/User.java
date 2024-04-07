@@ -1,6 +1,7 @@
 package crud.operations.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import crud.operations.service.impl.UserServiceImpl;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -68,4 +69,7 @@ public class User {
      */
     @Column(nullable = false)
     private String type;
+    public void update(Object updateInfo) {
+        System.out.println("Notification (" + this.firstName +  "): " + (String) updateInfo);
+    }
 }

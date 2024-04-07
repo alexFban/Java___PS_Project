@@ -1,5 +1,6 @@
 package crud.operations.service.impl;
 
+import crud.operations.entity.User_Project;
 import crud.operations.repository.ProjectRepository;
 import crud.operations.service.ProjectService;
 import lombok.AllArgsConstructor;
@@ -54,10 +55,16 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public Project updateProject(Project project) {
         Project existingProject = projectRepository.findById(project.getId()).get();
-        existingProject.setFunding_goal(project.getFunding_goal());
-        existingProject.setMoney_raised(project.getMoney_raised());
-        existingProject.setDescription(existingProject.getDescription());
+        existingProject.setName(project.getName() == null ?
+                                existingProject.getName() : project.getName());
+        existingProject.setFunding_goal(project.getFunding_goal() == 0 ?
+                                        existingProject.getFunding_goal() : project.getFunding_goal());
+        existingProject.setMoney_raised(project.getMoney_raised() == 0 ?
+                                        existingProject.getMoney_raised() : project.getMoney_raised());
+        existingProject.setDescription(project.getDescription() == null ?
+                                    existingProject.getDescription() : project.getDescription());
         Project updatedProject = projectRepository.save(existingProject);
+        updatedProject.update("Project " + updatedProject.getName() + " has been updated!");
         return updatedProject;
     }
     /**
