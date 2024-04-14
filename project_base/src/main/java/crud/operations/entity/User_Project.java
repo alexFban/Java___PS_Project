@@ -17,7 +17,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table(name = "user_projects")
-public class User_Project {
+public class User_Project implements Observer{
 
     /**
      * @hidden

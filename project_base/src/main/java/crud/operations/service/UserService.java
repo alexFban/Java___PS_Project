@@ -1,5 +1,6 @@
 package crud.operations.service;
 
+import crud.operations.entity.Project;
 import crud.operations.entity.User;
 
 import java.util.List;
@@ -13,6 +14,8 @@ public interface UserService {
     User getUserById(Long userId);
 
     List<User> getAllUsers();
+
+    public List<Project> getUserProjects(Long userId);
 
     User updateUser(User user);
 

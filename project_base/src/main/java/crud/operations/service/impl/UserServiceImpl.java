@@ -1,11 +1,14 @@
 package crud.operations.service.impl;
 
+import crud.operations.entity.Project;
 import crud.operations.entity.User;
+import crud.operations.entity.User_Project;
 import crud.operations.service.UserService;
 import lombok.AllArgsConstructor;
 import crud.operations.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,6 +52,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getAllUsers() {
         return userRepository.findAll();
+    }
+
+    @Override
+    public List<Project> getUserProjects(Long userId) {
+        User user = getUserById(userId);
+        List<Project> projects = new ArrayList<>();
+        for (User_Project userProject : user.getUser_projects()) {
+            projects.add(userProject.getProject());
+        }
+        return projects;
     }
 
     /**

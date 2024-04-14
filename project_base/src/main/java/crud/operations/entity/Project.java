@@ -25,7 +25,7 @@ import java.util.Set;
 @Entity
 @Table(name = "projects")
 @JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="id")
-public class Project {
+public class Project implements Observer{
 
     /**
      * @hidden

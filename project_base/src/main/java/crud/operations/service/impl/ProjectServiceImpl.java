@@ -1,5 +1,6 @@
 package crud.operations.service.impl;
 
+import crud.operations.entity.User;
 import crud.operations.entity.User_Project;
 import crud.operations.repository.ProjectRepository;
 import crud.operations.service.ProjectService;
@@ -7,6 +8,7 @@ import lombok.AllArgsConstructor;
 import crud.operations.entity.Project;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,6 +48,15 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public List<Project> getAllProjects() {
         return projectRepository.findAll();
+    }
+    @Override
+    public List<User> getProjectUsers(Long projectId) {
+        Project project = getProjectById(projectId);
+        List<User> users = new ArrayList<>();
+        for (User_Project userProject : project.getUser_projects()) {
+            users.add(userProject.getUser());
+        }
+        return users;
     }
     /**
      * Adds/modifies data of an existing Project. Equivalent to the PUT operation.
