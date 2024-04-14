@@ -1,5 +1,6 @@
 package crud.operations.controller;
 
+import crud.operations.entity.Project;
 import crud.operations.entity.User;
 import lombok.AllArgsConstructor;
 import crud.operations.service.UserService;
@@ -43,6 +44,12 @@ public class UserController {
     public ResponseEntity<User> getUserById(@PathVariable("id") Long userId){
         User user = userService.getUserById(userId);
         return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+    @GetMapping("{uId}/projects")
+    public ResponseEntity<List<Project>> getUserProjects(@PathVariable("uId") Long userId) {
+        List<Project> projects = userService.getUserProjects(userId);
+        return new ResponseEntity<>(projects, HttpStatus.OK);
     }
 
     // http://localhost:8080/api/users

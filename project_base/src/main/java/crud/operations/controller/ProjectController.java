@@ -1,5 +1,6 @@
 package crud.operations.controller;
 
+import crud.operations.entity.User;
 import lombok.AllArgsConstructor;
 import crud.operations.entity.Project;
 import crud.operations.service.ProjectService;
@@ -42,6 +43,12 @@ public class ProjectController {
     public ResponseEntity<Project> getProjectByProject(@PathVariable("id") Long projectId) {
         Project project = projectService.getProjectById(projectId);
         return new ResponseEntity<>(project, HttpStatus.OK);
+    }
+
+    @GetMapping("{pId}/users")
+    public ResponseEntity<List<User>> getProjectUsers(@PathVariable("pId") Long projectId) {
+        List<User> users = projectService.getProjectUsers(projectId);
+        return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
     /**
