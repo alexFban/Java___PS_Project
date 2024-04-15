@@ -86,4 +86,18 @@ public class User implements Observer{
     public void update(Object updateInfo) {
         System.out.println("Notification (" + this.firstName +  "): " + (String) updateInfo);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+
+        if(!(o instanceof User)) {
+            return false;
+        }
+
+        User user = (User) o;
+        return user.id.equals(this.id);
+    }
 }
