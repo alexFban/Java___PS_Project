@@ -45,6 +45,11 @@ public class ProjectController {
         return new ResponseEntity<>(project, HttpStatus.OK);
     }
 
+    /**
+     * GET REST API (with id parameter).
+     * @param projectId The Project ID to be used in the user search.
+     * @return The response to the operation.
+     */
     @GetMapping("{pId}/users")
     public ResponseEntity<List<User>> getProjectUsers(@PathVariable("pId") Long projectId) {
         List<User> users = projectService.getProjectUsers(projectId);

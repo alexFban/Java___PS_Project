@@ -49,6 +49,11 @@ public class ProjectServiceImpl implements ProjectService {
     public List<Project> getAllProjects() {
         return projectRepository.findAll();
     }
+    /**
+     * Gets all users that the project is affiliated with.
+     * @param projectId The project id we want the users from.
+     * @return All Users.
+     */
     @Override
     public List<User> getProjectUsers(Long projectId) {
         Project project = getProjectById(projectId);
