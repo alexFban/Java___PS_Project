@@ -46,6 +46,11 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
+    /**
+     * GET REST API (with id parameter).
+     * @param userId The User ID to be used in the project search.
+     * @return The response to the operation.
+     */
     @GetMapping("{uId}/projects")
     public ResponseEntity<List<Project>> getUserProjects(@PathVariable("uId") Long userId) {
         List<Project> projects = userService.getUserProjects(userId);

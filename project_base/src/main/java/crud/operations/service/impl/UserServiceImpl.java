@@ -54,6 +54,11 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll();
     }
 
+    /**
+     * Gets all project that the user is affiliated with.
+     * @param userId The user id we want the projects from.
+     * @return All Projects.
+     */
     @Override
     public List<Project> getUserProjects(Long userId) {
         User user = getUserById(userId);
