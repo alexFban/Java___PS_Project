@@ -1,9 +1,7 @@
 package crud.operations.service.impl;
 
 import crud.operations.entity.User_Project;
-import crud.operations.repository.UserRepository;
 import crud.operations.repository.User_ProjectRepository;
-import crud.operations.service.UserService;
 import crud.operations.service.User_ProjectService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
