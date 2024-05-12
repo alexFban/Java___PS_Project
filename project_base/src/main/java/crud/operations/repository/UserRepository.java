@@ -1,10 +1,19 @@
 package crud.operations.repository;
 
 import crud.operations.entity.User;
-import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+import java.util.Optional;
 
 /**
  * An interface that defines the methods for performing CRUD operations on the User.
  */
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository {
+    User save(User user);
+
+    Optional<User> findById(Long userId);
+
+    List<User> findAll();
+
+    void deleteById(Long userId);
 }
