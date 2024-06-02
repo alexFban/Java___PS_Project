@@ -92,3 +92,11 @@ The Observer is an interface with an update method that has an Object type param
 The backend functionallity is now 90% complete. All it's missing are some functionalities that will be determined when implementing the frontend.
 
 The way that the backend is designed enables the user to access the data from all the different DB tables using CRUD operations, which should make the implementation of the frontend a lot easier and more straightforward.
+
+###### Final Backend UML Diagram
+This is an abstract representation of the way this app works. In each of the classes Data represents one of the following: User, User_Project, Project, Pledge_Reward, Social_Goal, Social_Reward. The basics are as follow: the Controller class communicates with the frontend (doesn't matter what kind, android, web, ...) and calls the neccessarry methods for each use case from the Service class. The Repository class is the one that communicates with the Database (kind of, it actually calls some methods from JpaRepository, which in return manages the database).
+![uml diagram](https://raw.githubusercontent.com/alexFban/Project_Funding_App/main/UML_Diagram.PNG)
+
+###### Final Use Case Diagram
+The use cases are sadly less in number than anticipated, but it's still a good base for an app, and it could be easily expanded into what I had initially in mind.
+![use case diagram](https://raw.githubusercontent.com/alexFban/Project_Funding_App/main/Use_Case_Diagram.PNG)
