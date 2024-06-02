@@ -13,6 +13,8 @@ public interface UserRepository {
 
     Optional<User> findById(Long userId);
 
+    Optional<User> findByUsername(String username);
+
     List<User> findAll();
 
     void deleteById(Long userId);

@@ -26,6 +26,7 @@ public interface UserService {
      * @return All Users.
      */
     List<User> getAllUsers();
+    User getUserByUsername(String username);
     /**
      * Gets all project that the user is affiliated with.
      * @param userId The user id we want the projects from.

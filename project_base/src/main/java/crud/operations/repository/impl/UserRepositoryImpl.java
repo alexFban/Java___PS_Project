@@ -4,6 +4,8 @@ import crud.operations.entity.User;
 import crud.operations.repository.UserRepository;
 import crud.operations.repository.jpa.UserJpaRepo;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -22,6 +24,19 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public Optional<User> findById(Long userId) {
         return jpaRepository.findById(userId);
+    }
+
+    @Override
+    public Optional<User> findByUsername(String username) {
+        List<User> users = jpaRepository.findAll();
+
+        for (User user : users) {
+            if (user.getUsername().equals(username)) {
+                return Optional.of(user);
+            }
+        }
+
+        return Optional.empty();
     }
 
     @Override

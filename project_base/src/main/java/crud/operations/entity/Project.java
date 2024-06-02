@@ -38,7 +38,7 @@ public class Project implements Observer{
      * @hidden
      */
     @JsonIgnore
-    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<User_Project> user_projects = new ArrayList<>();
 
     /**
